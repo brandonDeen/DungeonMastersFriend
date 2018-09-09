@@ -1,0 +1,3 @@
+var campaign_data = {
+
+};

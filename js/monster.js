@@ -1,0 +1,3 @@
+var monster_data = {
+
+};
