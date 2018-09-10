@@ -1,7 +1,6 @@
 
 
 /*-----GENERAL TAGS-----*/
-
 body {
     font-family: 'Macondo', cursive;
     color: #2d2d30;
@@ -9,7 +8,7 @@ body {
     /*color: #777;
     background-color: #2d2d30*/
 }
-
+/*
 h1, h2 { 
 	margin: 0 !important; 
 }
@@ -20,18 +19,17 @@ h3, h4 {
 
 strong {
 	color: #339933;
-}
+}*/
 
-hr {
+/*hr {
 	width: 90%;
 	display: block;
 	height: 1px;
     border-top: 1px solid #ccc;
-}
+}*/
 
 footer {
-	font-family: 'Macondo', cursive;
-	background-color: #2d2d30;
+	background-color: #101010;
 	color: #f5f5f5;
 	height: 5vh;
 	position:fixed;
@@ -39,40 +37,11 @@ footer {
 	left:0;
 	right:0;
 }
+
+
 footer  a { color: #339933; }
 
-/* Add a dark background color with a little bit see-through */ 
-.navbar {
-    margin-bottom: 0;
-    background-color: #2d2d30;
-    border: 0;
-    font-size: 11px !important;
-    letter-spacing: 4px;
-    opacity:0.9;
-}
-
-/* Add a gray color to all navbar links */
-.navbar li a, .navbar .navbar-brand { 
-    color: #d5d5d5 !important;
-}
-
-/* On hover, the links will turn white */
-.navbar-nav li a:hover {
-    color: #fff !important;
-}
-
-/* The active link */
-.navbar-nav li.active a {
-    color: #fff !important;
-    background-color:#29292c !important;
-}
-
-/* Remove border color from the collapsible button */
-.navbar-default .navbar-toggle {
-    border-color: transparent;
-}
-
-.header {	
+/*.header {	
 	font-family: 'Macondo', cursive;
 	background-color: #2d2d30;
 	color: #f5f5f5;
@@ -82,177 +51,45 @@ footer  a { color: #339933; }
 	left:0;
 	right:0;
 	text-align: center;
-}
+}*/
 
 #main { 
-	height: 90vh; 
+	padding-top: 8vh;
+	/*padding-bottom: 3vh;*/
+	height: 90vh;
 }
 
+/*
 #content {
 	box-shadow: 10px 10px 5px #888888;
 }
 
 #home {
-	/*background-size: cover;*/
+	background-size: cover;
+}*/
+
+
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
 }
 
-#work, #education {
-	text-align: left;
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+/*.row.content {height: 450px}*/
+
+/* Set gray background color and 100% height */
+.sidenav {
+	padding-top: 5vh;
+	/*background-color: #101010;*/
+	height: 92vh;
 }
 
-#about {
-	/*background-color: #2d2d30;*/
-	/*color: #f5f5f5;*/
-}
-
-.top_description {
-	text-align: center;
-}
-
-.tab-content {
-	/*background-image: url('../resources/bc1.jpg');*/
-	/*color: #2d2d30;*/
-	font-family: 'Macondo', cursive;
-	background-color: #ffffff;
-	height: 75vh;
-	max-height: 75vh;
-	border-top: 2px solid black;
-	text-align: center;
-	overflow: auto;
-}
-
-.tab-content a {
-	color: #2d2d30;
-}
-
-.tab-content a:hover {
-	color: #339933;
-}
-
-.item {
-	border: 5px solid black;
-}
-
-.list-inline {
-	display: inline-block;
-}
-
-@media screen and (min-width:768px){
-    .navbar-brand-centered {
-        position: absolute;
-        left: 50%;
-        display: block;
-        width: 160px;
-        text-align: center;
-    }
-    .navbar>.container .navbar-brand-centered, 
-    .navbar>.container-fluid .navbar-brand-centered {
-        margin-left: -80px;
-    }
-}
-
-.container {
-	padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.row {
-    margin-right: -15px;
-    margin-left: -15px;
-}
-
-#googleMap {
-	height: 30vh;
-	-webkit-filter: grayscale(100%);
-	filter: grayscale(100%); 
-}
-
-.skillbar {
-	position: relative;
-	display: block;
-	margin-bottom: 15px;
-	margin-left: 15px;
-	margin-right: 15px;
-	width: 90%;
-	background: #eee;
-	height: 35px;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-webkit-transition: 0.4s linear;
-	-moz-transition: 0.4s linear;
-	-ms-transition: 0.4s linear;
-	-o-transition: 0.4s linear;
-	transition: 0.4s linear;
-	-webkit-transition-property: width, background-color;
-	-moz-transition-property: width, background-color;
-	-ms-transition-property: width, background-color;
-	-o-transition-property: width, background-color;
-	transition-property: width, background-color;
-}
-
-.skillbar-title {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 110px;
-	font-weight: bold;
-	font-size: 13px;
-	color: white;
-	background: gray;
-	-webkit-border-top-left-radius: 3px;
-	-webkit-border-bottom-left-radius: 4px;
-	-moz-border-radius-top-left: 3px;
-	-moz-border-radius-bottom-left: 3px;
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
-}
-
-.skillbar-title span {
-	display: block;
-	background: gray;
-	padding: 0 20px;
-	height: 35px;
-	line-height: 35px;
-	-webkit-border-top-left-radius: 3px;
-	-webkit-border-bottom-left-radius: 3px;
-	-moz-border-radius-top-left: 3px;
-	-moz-border-radius-bottom-left: 3px;
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
-}
-
-.skillbar-bar {
-	height: 35px;
-	width: 0px;
-	background: gray;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-}
-
-.skill-bar-percent {
-	position: absolute;
-	right: 10px;
-	top: 0;
-	font-size: 11px;
-	height: 35px;
-	line-height: 35px;
-	color: black;
-}
-
-.img-circle {
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.btn {
-	color: #f5f5f5 !important;
-	background-color: #2d2d30 !important;
-}
-
-.btn:hover {
-	color: #2d2d30 !important;
-	background-color: #339933 !important;
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+	.sidenav {
+	height: auto;
+	padding: 15px;
+	}
+	.row.content {height:auto;} 
 }

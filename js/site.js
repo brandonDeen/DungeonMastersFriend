@@ -49,7 +49,7 @@ function handleMailto(){
 //---------------------ON LOAD-----------------------------------
 
 $(document).ready(function(){
-	load_navbar(app.sections);
+	// load_navbar(app.sections);
 	// load_content( get_page_sections() );
 });
 
