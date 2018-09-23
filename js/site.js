@@ -1,3 +1,46 @@
+function nullCheck(val){
+	return val == null || val == '' ? 0 : parseInt(val);
+}
+
+function randomValue(low, high){
+	console.log("Generating random value. Low: " + low + ", High: " + high);
+	return Math.floor(Math.random() * high) + low;
+}
+
+function rollDice(){
+	var numberOfDice = nullCheck( $('#diceNumber').val() );
+	var sides = nullCheck( $('#diceSides').val() );
+
+	var max = numberOfDice * sides;
+	var min = numberOfDice;
+	alert(randomValue(min, max));
+}
+
+function convertCurrency(){
+	var fromValue = nullCheck( $('#fromValue').val() );
+	var fromCurrency = nullCheck( $('#fromCurrency').val() );
+	var toCurrency = nullCheck( $('#toCurrency').val() );
+
+	var newVal = fromValue * fromCurrency / toCurrency;
+
+	if(fromCurrency < toCurrency && fromValue < 10){
+		alert("Not enough money to convert");
+	}
+	else{
+		alert(newVal);
+	}
+}
+
+function loadStore(){
+	store.goodsToTable();
+	store.armorToTable();
+	store.meleeToTable();
+	store.rangedToTable();
+	store.ammoToTable();
+	store.animalsToTable();
+	store.foodToTable();
+	store.servicesToTable();
+}
 
 function load_content(sections){
 	for(var i=0; i<sections.length; i++){ 
@@ -51,6 +94,7 @@ function handleMailto(){
 $(document).ready(function(){
 	// load_navbar(app.sections);
 	// load_content( get_page_sections() );
+	loadStore();
 });
 
 

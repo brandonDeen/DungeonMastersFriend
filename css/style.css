@@ -93,3 +93,16 @@ footer  a { color: #339933; }
 	}
 	.row.content {height:auto;} 
 }
+
+table {
+	background-color: white;
+}
+
+thead {
+	background-color: black;
+	color: white;
+}
+
+input {
+	text-align: center;
+}
