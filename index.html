@@ -1,169 +1,177 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-	<title>Dungeon Master's Helper</title>
-	<!-- meta -->
-	<meta charset='utf-8'>
-	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<!-- CSS -->
-	<link rel='stylesheet' href='css/bootstrap.min.css' >
-	<link rel='stylesheet' href='css/font-awesome.min.css'>
-	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Uncial+Antiqua' >
-	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Macondo'>
-	<link rel='stylesheet' href='css/style.css' >
-	<!-- JS -->
-	<script src='js/jQuery.js'></script>
-	<script src='js/bootstrap.min.js'></script>
-	<!-- Browser/Favorite Icon -->
-	<link rel="icon" href="resources/favicon.ico">
+    <title>Dungeon Master's Helper</title>
+    <!-- meta -->
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- CSS -->
+    <link rel='stylesheet' href='css/bootstrap.min.css'>
+    <link rel='stylesheet' href='css/font-awesome.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Uncial+Antiqua'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Macondo'>
+    <link rel='stylesheet' href='css/style.css'>
+    <!-- JS -->
+    <script src='js/jQuery.js'></script>
+    <script src='js/bootstrap.min.js'></script>
+    <!-- Browser/Favorite Icon -->
+    <link rel="icon" href="resources/favicon.ico">
 </head>
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top " data-spy="affix">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a id="logo" class="navbar-brand" href="#">Dungeon Master's Little Helper</a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="logo" class="navbar-brand" href="#">Dungeon Master's Little Helper</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#" onclick="moveToDiv(event, 'About')">About</a></li>
+                <li><a href="#" onclick="moveToDiv(event, 'Generator')">Generator</a></li>
+                <li><a href="#" onclick="moveToDiv(event, 'Store')">Store</a></li>
+                <li><a href="#" onclick="moveToDiv(event, 'Campaign')">Campaign</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="collapse navbar-collapse navbar-right" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Generator</a></li>
-        <li><a href="#">Store</a></li>
-		<li><a href="#">Campaign</a></li>
-      </ul>
-    </div>
-  </div>
 </nav>
 
-<div class="container-fluid text-center">    
-  <div class="row content">
-	  <br>
-	  <br>
-  </div>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <br>
+        <br>
+    </div>
 </div>
 
-<div class="container-fluid text-center">    
-  <div class="row content">
-    <div class="col-sm-1 sidenav">
-    </div>
-    <div class="col-sm-10 text-left"> 
-      <h1>Welcome</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <hr>
-      <h3>Dice Roller</h3>
-      <div>
-		  <input id="diceNumber" type="number" min="1" max="10" placeholder="1"/>
-		  <select id="diceSides">
-			<option id="d3" value="3">d3</option>
-			<option id="d6" value="6">d6</option>
-			<option id="d8" value="8">d8</option>
-			<option id="d10" value="10">d10</option>
-			<option id="d20" value="20">d20</option>
-		  </select>
-		  <input id="diceRollSubmit" type="submit" value="Roll!" onclick="rollDice()"/>
-	  </div>
-	  <hr>
-      <h3>Currency Converter</h3>
-      <div>
-		  <input id="fromValue" type="number" min="1" max="10000" placeholder="1"/>
-		  <select id="fromCurrency">
-			<option id="fromCopper" value="1">copper</option>
-			<option id="fromSilver" value="10" selected="selected">silver</option>
-			<option id="fromGold" value="100">gold</option>
-			<option id="fromPlatinum" value="1000">platinum</option>
-		  </select>
-		  <select id="toCurrency">
-			<option id="toCopper" value="1" selected="selected">copper</option>
-			<option id="toSilver" value="10">silver</option>
-			<option id="toGold" value="100">gold</option>
-			<option id="toPlatinum" value="1000">platinum</option>
-		  </select>
-		  <input id="currencyConvertSubmit" type="submit" value="Convert" onclick="convertCurrency()"/>
-	  </div>
-    </div>
-    <div class="col-sm-1 sidenav">
-    </div>
-  </div>
+<div class="container-fluid text-center">
+    <div id="About" class="row content">
+        <div class="col-sm-1 sidenav">
+        </div>
+        <div class="col-sm-10 text-left">
+            <h1>Welcome</h1>
+            <p>Soon, like in the somewhat near future, there will be some epic and inspiring text here...just not today</p>
 
-<hr>
+            <div>
+                <hr>
+                <h3>Dice Roller</h3>
+                <input id="diceNumber" type="number" min="1" max="10" placeholder="1"/>
+                <select id="diceSides">
+                    <option id="d2" value="2">d2</option>
+                    <option id="d3" value="3">d3</option>
+                    <option id="d6" value="6">d6</option>
+                    <option id="d8" value="8">d8</option>
+                    <option id="d10" value="10">d10</option>
+                    <option id="d12" value="12">d12</option>
+                    <option id="d20" value="20">d20</option>
+                    <option id="d100" value="100">d100</option>
+                </select>
+                <input id="diceRollSubmit" type="submit" value="Roll!" onclick="emptyAndAppend('dieResult', rollDice())"/>
+                <label id="dieResult"></label>
+            </div>
+            <hr>
 
-	<div class="row content">
-    <div class="col-sm-1 sidenav">
+            <div hidden="hidden">
+                <h3>Currency Converter</h3>
+                <input id="fromValue" type="number" min="1" max="10000" placeholder="1"/>
+                <select id="fromCurrency">
+                    <option id="fromCopper" value="1">copper</option>
+                    <option id="fromSilver" value="10" selected="selected">silver</option>
+                    <option id="fromGold" value="100">gold</option>
+                    <option id="fromPlatinum" value="1000">platinum</option>
+                </select>
+                <select id="toCurrency">
+                    <option id="toCopper" value="1" selected="selected">copper</option>
+                    <option id="toSilver" value="10">silver</option>
+                    <option id="toGold" value="100">gold</option>
+                    <option id="toPlatinum" value="1000">platinum</option>
+                </select>
+                <input id="currencyConvertSubmit" type="submit" value="Convert" onclick="convertCurrency()"/>
+                <label id="currencyConversionResult"></label>
+            </div>
+        </div>
+        <div class="col-sm-1 sidenav">
+        </div>
     </div>
-    <div class="col-sm-10 text-left"> 
-      <h1>Generator</h1>
-	  <h3>Monster</h3>
-      <p>There will be a sweet monster generator here...one day</p>
-      <hr>
-      <h3>NPC</h3>
-      <p>There will be a sweet npc generator here...one day</p>
-	  <hr>
-	  <h3>Loot</h3>
-      <p>There will be a sweet loot generator here...one day</p>
-    </div>
-    <div class="col-sm-1 sidenav">
-    </div>
-  </div>
 
-  <hr>
-  
-  <div class="row content">
-    <div class="col-sm-1 sidenav">
-    </div>
-    <div class="col-sm-10 text-left"> 
-      <h1>Store</h1>
-	  <h3>Goods</h3>
-      <table class="table table-bordered table-hover" id="goodsTable"></table>
-	  <h3>Armor</h3>
-	  <table class="table table-bordered table-hover" id="armorTable"></table>
-	  <h3>Weapons (melee)</h3>
-	  <table class="table table-bordered table-hover" id="weaponsTable"></table>
-	  <h3>Weapons (ranged)</h3>
-	  <table class="table table-bordered table-hover" id="rangedWeaponsTable"></table>
-	  <h3>Ammunition</h3>
-	  <table class="table table-bordered table-hover" id="ammoTable"></table>
-	  <h3>Animals</h3>
-	  <table class="table table-bordered table-hover" id="animalsTable"></table>
-	  <h3>Services</h3>
-	  <table class="table table-bordered table-hover" id="servicesTable"></table>
-	  <h3>Food</h3>
-	  <table class="table table-bordered table-hover" id="foodTable"></table>
-    </div>
-    <div class="col-sm-1 sidenav">
-    </div>
-  </div>
-  <hr>
+    <hr>
 
-  <div class="row content">
-    <div class="col-sm-1 sidenav">
-    </div>
-    <div class="col-sm-10 text-left"> 
-      <h1>Campaign</h1>
-      <hr>
-      <h3>Character Tracker</h3>
-      <p>There will be a sweet character tracker for the DM here...one day</p>
-    </div>
-    <div class="col-sm-1 sidenav">
-    </div>
-  </div>
-							
-	<footer id='footer' class='container-fluid text-center'>
-		<p>
-			This page was created by Brandon Deen 
-			<a target='_blank' href='https://github.com/brandonDeen/DungeonMastersFriend'>
-				<i class='fa fa-github' data-toggle='tooltip' title='View the Source Code'></i>
-			</a>
-		</p>
-	</footer>
+    <div id="Generator" class="row content">
+        <h1>Generator</h1>
+        <div class="col-sm-1 sidenav"></div>
+        <div class="col-sm-10 text-left">
 
-	<!-- NON CSS DEPENDENT JS -->
-	<script src='js/store.js'></script>
-	<script src='js/site.js'></script>
-</body>	
+            <h3>Monster</h3>
+            <p>There will be a sweet monster generator here...one day</p>
+            <hr>
+            <h3>NPC</h3>
+            <p>There will be a sweet npc generator here...one day</p>
+            <hr>
+            <h3>Loot</h3>
+            <p>There will be a sweet loot generator here...one day</p>
+        </div>
+        <div class="col-sm-1 sidenav">
+        </div>
+    </div>
+
+    <hr>
+
+    <div id="Store" class="row content">
+        <div class="col-sm-1 sidenav">
+        </div>
+        <div class="col-sm-10 text-left">
+            <h1>Store</h1>
+            <h3>Goods</h3>
+            <table class="table table-bordered table-hover" id="goodsTable"></table>
+            <h3>Armor</h3>
+            <table class="table table-bordered table-hover" id="armorTable"></table>
+            <h3>Weapons (melee)</h3>
+            <table class="table table-bordered table-hover" id="weaponsTable"></table>
+            <h3>Weapons (ranged)</h3>
+            <table class="table table-bordered table-hover" id="rangedWeaponsTable"></table>
+            <h3>Ammunition</h3>
+            <table class="table table-bordered table-hover" id="ammoTable"></table>
+            <h3>Animals</h3>
+            <table class="table table-bordered table-hover" id="animalsTable"></table>
+            <h3>Services</h3>
+            <table class="table table-bordered table-hover" id="servicesTable"></table>
+            <h3>Food</h3>
+            <table class="table table-bordered table-hover" id="foodTable"></table>
+        </div>
+        <div class="col-sm-1 sidenav">
+        </div>
+    </div>
+    <hr>
+
+    <div id="Campaign" class="row content">
+        <div class="col-sm-1 sidenav">
+        </div>
+        <div class="col-sm-10 text-left">
+            <h1>Campaign</h1>
+            <hr>
+            <h3>Character Tracker</h3>
+            <p>There will be a sweet character tracker for the DM here...one day</p>
+        </div>
+        <div class="col-sm-1 sidenav">
+        </div>
+    </div>
+
+    <footer id='footer' class='container-fluid text-center'>
+        <p>
+            This page was created by Brandon Deen
+            <a target='_blank' href='https://github.com/brandonDeen/DungeonMastersFriend'>
+                <i class='fa fa-github' data-toggle='tooltip' title='View the Source Code'></i>
+            </a>
+        </p>
+    </footer>
+
+    <!-- NON CSS DEPENDENT JS -->
+    <script src='js/store.js'></script>
+    <script src='js/site.js'></script>
+</body>
 </html>

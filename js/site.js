@@ -1,33 +1,38 @@
 function nullCheck(val){
-	return val == null || val == '' ? 0 : parseInt(val);
-}
-
-function randomValue(low, high){
-	console.log("Generating random value. Low: " + low + ", High: " + high);
-	return Math.floor(Math.random() * high) + low;
+	return val == null || val == '' ? 1 : parseInt(val);
 }
 
 function rollDice(){
-	var numberOfDice = nullCheck( $('#diceNumber').val() );
-	var sides = nullCheck( $('#diceSides').val() );
+	let numberOfDice = nullCheck( $('#diceNumber').val() );
+	let sides = nullCheck( $('#diceSides').val() );
+	let roll = 0;
 
-	var max = numberOfDice * sides;
-	var min = numberOfDice;
-	alert(randomValue(min, max));
+	for (let i = 0; i<numberOfDice; i++) {
+		roll = roll + Math.floor(Math.random() * Math.floor(sides)) + 1;
+	}
+
+	console.log(`${numberOfDice}d${sides} => ${roll}`);
+	return roll;
 }
 
 function convertCurrency(){
-	var fromValue = nullCheck( $('#fromValue').val() );
-	var fromCurrency = nullCheck( $('#fromCurrency').val() );
-	var toCurrency = nullCheck( $('#toCurrency').val() );
+	let currencies = [
+		{name: 'copper', symbol: 'c'},
+		{name: 'silver', symbol: 's'},
+		{name: 'gold', symbol: 'g'},
+		{name: 'platinum', symbol: 'p'},
+	];
+	let fromValue = nullCheck( $('#fromValue').val() );
+	let fromCurrency = nullCheck( $('#fromCurrency').val() );
+	let toCurrency = nullCheck( $('#toCurrency').val() );
 
-	var newVal = fromValue * fromCurrency / toCurrency;
+	let newVal = fromValue * fromCurrency / toCurrency;
 
 	if(fromCurrency < toCurrency && fromValue < 10){
 		alert("Not enough money to convert");
 	}
 	else{
-		alert(newVal);
+		$('#currencyConversionResult').empty().append(newVal);
 	}
 }
 
@@ -42,23 +47,25 @@ function loadStore(){
 	store.servicesToTable();
 }
 
+//-------------------page content----------------------------------
+
 function load_content(sections){
-	for(var i=0; i<sections.length; i++){ 
-		var selector = '#' + sections[i].id
+	for(let i=0; i<sections.length; i++){
+		let selector = '#' + sections[i].id
 		$(selector).append(sections[i].content);
 	}
 }
 
 function load_navbar(links){
-	var navbarSelector = "#myNavbar";
+	let navbarSelector = "#myNavbar";
 	$(navbarSelector).append("<ul class='nav navbar-nav navbar-right'>");
-	for(var i=0; i<links.length; i++){
+	for(let i=0; i<links.length; i++){
 		$(navbarSelector).append("<li><a href='#" + links[i] + "'>" + links[i] + "</a></li>");
 	}
 	$(navbarSelector).append("</ul>");
 }
 
-var app = {
+let app = {
 	sections: ["home", "character_tracker", "monster_generator", "npc_generator", "loot_generator", "store", "campaign", "dice_roll_quick_maths" ]
 };
 
@@ -78,15 +85,22 @@ function get_page_sections(){
 	return sections;
 }
 
-//-------------------page content----------------------------------
-
-
-
 function handleMailto(){
-	var email = 'brandon.deen47@gmail.com';
-	var subject = $('#subject').val() || '';
-	var body = $('#comments').val() || '';
+	let email = '';
+	let subject = $('#subject').val() || '';
+	let body = $('#comments').val() || '';
 	window.location.href = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+}
+
+function emptyAndAppend(elementId, content) {
+	$('#'+elementId).empty().append(content);
+}
+
+function moveToDiv(event, divId) {
+	console.log(`moving to ${divId}`);
+	$('html,body').animate({
+			scrollTop: $('#'+ divId).offset().top},
+		'slow');
 }
 
 //---------------------ON LOAD-----------------------------------
