@@ -37,6 +37,7 @@
                 <li><a href="#" onclick="moveToDiv(event, 'Generator')">Generator</a></li>
                 <li><a href="#" onclick="moveToDiv(event, 'Store')">Store</a></li>
                 <li><a href="#" onclick="moveToDiv(event, 'Campaign')">Campaign</a></li>
+                <li><a href="#" onclick="moveToDiv(event, 'Other')">Other</a></li>
             </ul>
         </div>
     </div>
@@ -64,14 +65,15 @@
                 <select id="diceSides">
                     <option id="d2" value="2">d2</option>
                     <option id="d3" value="3">d3</option>
+                    <option id="d4" value="4">d4</option>
                     <option id="d6" value="6">d6</option>
                     <option id="d8" value="8">d8</option>
                     <option id="d10" value="10">d10</option>
                     <option id="d12" value="12">d12</option>
-                    <option id="d20" value="20">d20</option>
+                    <option id="d20" value="20" selected="selected">d20</option>
                     <option id="d100" value="100">d100</option>
                 </select>
-                <input id="diceRollSubmit" type="submit" value="Roll!" onclick="emptyAndAppend('dieResult', rollDice())"/>
+                <input id="diceRollSubmit" type="submit" value="Roll!" onclick="emptyAndAppend('dieResult', rollDice(-1, -1))"/>
                 <label id="dieResult"></label>
             </div>
             <hr>
@@ -160,6 +162,22 @@
         <div class="col-sm-1 sidenav">
         </div>
     </div>
+
+    <div id="Other" class="row content">
+        <div class="col-sm-1 sidenav">
+        </div>
+        <div class="col-sm-10 text-left">
+            <h1>d20 vs 3d6</h1>
+            <h3>d20</h3>
+            <table  class="table table-bordered table-hover" id="d20-stats"></table>
+            <h3>3d6</h3>
+            <table  class="table table-bordered table-hover" id="3d6-stats"></table>
+        </div>
+        <div class="col-sm-1 sidenav">
+        </div>
+    </div>
+
+    <br>
 
     <footer id='footer' class='container-fluid text-center'>
         <p>

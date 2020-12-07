@@ -1,17 +1,19 @@
+const LOGGING_ENABLED = false;
+
 function nullCheck(val){
-	return val == null || val == '' ? 1 : parseInt(val);
+	return val == null || val === '' ? 1 : parseInt(val);
 }
 
-function rollDice(){
-	let numberOfDice = nullCheck( $('#diceNumber').val() );
-	let sides = nullCheck( $('#diceSides').val() );
+function rollDice(numberOfDice, sides){
+	if (numberOfDice === -1) { numberOfDice = nullCheck( $('#diceNumber').val() ); }
+	if (sides === -1) { sides = nullCheck( $('#diceSides').val() ); }
 	let roll = 0;
 
 	for (let i = 0; i<numberOfDice; i++) {
 		roll = roll + Math.floor(Math.random() * Math.floor(sides)) + 1;
 	}
 
-	console.log(`${numberOfDice}d${sides} => ${roll}`);
+	if (LOGGING_ENABLED) { console.log(`${numberOfDice}d${sides} => ${roll}`); }
 	return roll;
 }
 
@@ -45,6 +47,87 @@ function loadStore(){
 	store.animalsToTable();
 	store.foodToTable();
 	store.servicesToTable();
+}
+
+function loadDieStats(table, dieCount, dieSize, options) {
+	table.append('<thead>' +
+		'<tr>' +
+		'<th>Stat Score</th>' +
+		'<th>Roll Under Stat</th>' +
+		'<th>Roll Over 11</th>' +
+		'<th>Roll Over 21 - Stat</th>' +
+		'</tr>' +
+		'</thead>');
+
+	let rollAttempts = 100000;
+	let minStatScore = 3;
+	let maxStatScore = 18;
+	let results = [];
+	for(let score=minStatScore; score<=maxStatScore; score++) {
+		results.push(getRollStats(score, options, dieCount, dieSize, rollAttempts));
+	}
+
+	table.append('<tbody>');
+	results.forEach(element => table.append(element.tableRowString));
+	table.append('</tbody>');
+
+	return results;
+}
+
+function calculateStatBonus(score) {
+	return score - 10;
+	// return Math.floor((score - 10) / 2);
+}
+
+function getRollStats(score, options, dieCount, dieSize, attempts) {
+	let rollUnderCount = 0;
+	let rollOver10Count = 0;
+	let rollOver11Count = 0;
+	let rollOver12Count = 0;
+	let rollOver15Count = 0;
+	let rollOver18Count = 0;
+	let rollOver20Count = 0;
+	let rollOver21MinusStatCount = 0;
+	let targetModifier = (options === 'Easy' ? -5 : (options === 'Hard' ? 5 : 0));
+	let statBonus = calculateStatBonus(score);
+
+	for (let i=0; i<attempts; i++) {
+		let roll = rollDice(dieCount, dieSize);
+		(roll + targetModifier <= score) ? rollUnderCount++ : '';
+		(roll + statBonus >= 10 + targetModifier) ? rollOver10Count++ : '';
+		(roll + statBonus >= 11 + targetModifier) ? rollOver11Count++ : '';
+		(roll + statBonus >= 12 + targetModifier) ? rollOver12Count++ : '';
+		(roll + statBonus >= 15 + targetModifier) ? rollOver15Count++ : '';
+		(roll + statBonus >= 18 + targetModifier) ? rollOver18Count++ : '';
+		(roll + statBonus >= 20 + targetModifier) ? rollOver20Count++ : '';
+		(roll >= 21 - score + targetModifier) ? rollOver21MinusStatCount++ : '';
+	}
+
+	let results =	{
+			statScore: score,
+			rollUnder: ((rollUnderCount / attempts) * 100).toFixed(2),
+			rollOver10: ((rollOver10Count / attempts) * 100).toFixed(2),
+			rollOver11: ((rollOver11Count / attempts) * 100).toFixed(2),
+			rollOver12: ((rollOver12Count / attempts) * 100).toFixed(2),
+			rollOver15: ((rollOver15Count / attempts) * 100).toFixed(2),
+			rollOver18: ((rollOver18Count / attempts) * 100).toFixed(2),
+			rollOver20: ((rollOver20Count / attempts) * 100).toFixed(2),
+			rollOver21MinusStat: ((rollOver21MinusStatCount / attempts) * 100).toFixed(2),
+			tableRowString: function(){
+			return `<tr>` +
+				`<td>${results.statScore}</td>` +
+				`<td>${results.rollUnder}</td>` +
+				//`<td>${results.rollOver10}%</td>` +
+				`<td>${results.rollOver11}%</td>` +
+				//`<td>${results.rollOver12}%</td>` +
+				//`<td>${results.rollOver15}%</td>` +
+				//`<td>${results.rollOver18}%</td>` +
+				//`<td>${results.rollOver20}%</td>` +
+				`<td>${results.rollOver21MinusStat}%</td>` +
+				`</tr>`
+		}
+	};
+	return results;
 }
 
 //-------------------page content----------------------------------
@@ -109,6 +192,10 @@ $(document).ready(function(){
 	// load_navbar(app.sections);
 	// load_content( get_page_sections() );
 	loadStore();
+	let d20Stats = loadDieStats($('#d20-stats'), 1, 20, 'Normal');
+	let threeD6Stats = loadDieStats($('#3d6-stats'), 3, 6, 'Normal');
+	console.log(d20Stats);
+	console.log(threeD6Stats);
 });
 
 
