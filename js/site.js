@@ -116,7 +116,7 @@ function getRollStats(score, options, dieCount, dieSize, attempts) {
 			tableRowString: function(){
 			return `<tr>` +
 				`<td>${results.statScore}</td>` +
-				`<td>${results.rollUnder}</td>` +
+				`<td>${results.rollUnder}%</td>` +
 				//`<td>${results.rollOver10}%</td>` +
 				`<td>${results.rollOver11}%</td>` +
 				//`<td>${results.rollOver12}%</td>` +
@@ -128,6 +128,44 @@ function getRollStats(score, options, dieCount, dieSize, attempts) {
 		}
 	};
 	return results;
+}
+
+function loadCompareStats(oneD20, threeD6) {
+	let table = $('#vs-stats');
+	table.append('<thead>' +
+		'<tr>' +
+		'<th>Stat Score</th>' +
+		'<th>d20 Roll Under</th>' +
+		'<th>3d6 Roll Under</th>' +
+		'<th>Diff</th>' +
+		'</tr>' +
+		'</thead>');
+
+
+	let results = [];
+	
+	// assumes oneD20.length == threeD6.length
+	for(let i=0; i<oneD20.length; i++) {
+		let val = {
+			statScore: oneD20[i].statScore,
+			rollUnderA: oneD20[i]['rollUnder'],
+			rollUnderB: threeD6[i]['rollUnder'],
+				
+			tableRowString: function() {
+				return `<tr>` +
+				`<td>${val.statScore}</td>` +
+				`<td>${Math.round(val.rollUnderA)}%</td>` +
+				`<td>${Math.round(val.rollUnderB)}%</td>` +
+				`<td>${Math.round(val.rollUnderA - val.rollUnderB)}</td>` +
+				`</tr>`;
+			}
+		};
+		results.push(val);
+	}
+
+	table.append('<tbody>');
+	results.forEach(element => table.append(element.tableRowString));
+	table.append('</tbody>');
 }
 
 //-------------------page content----------------------------------
@@ -189,13 +227,14 @@ function moveToDiv(event, divId) {
 //---------------------ON LOAD-----------------------------------
 
 $(document).ready(function(){
-	// load_navbar(app.sections);
-	// load_content( get_page_sections() );
 	loadStore();
 	let d20Stats = loadDieStats($('#d20-stats'), 1, 20, 'Normal');
 	let threeD6Stats = loadDieStats($('#3d6-stats'), 3, 6, 'Normal');
+	
 	console.log(d20Stats);
 	console.log(threeD6Stats);
+
+	loadCompareStats(d20Stats, threeD6Stats);
 });
 
 
